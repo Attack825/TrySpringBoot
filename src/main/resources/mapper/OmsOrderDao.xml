@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.tryspringboot.dao.OmsOrderDao">
+  <resultMap id="BaseResultMap" type="com.example.tryspringboot.model.entity.OmsOrder">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="uuid" jdbcType="VARCHAR" property="uuid" />
+    <result column="create_at" jdbcType="TIMESTAMP" property="createAt" />
+    <result column="update_at" jdbcType="TIMESTAMP" property="updateAt" />
+    <result column="delete_at" jdbcType="TIMESTAMP" property="deleteAt" />
+    <result column="pay_type" jdbcType="INTEGER" property="payType" />
+    <result column="order_state" jdbcType="INTEGER" property="orderState" />
+    <result column="pay_latest_time" jdbcType="TIMESTAMP" property="payLatestTime" />
+    <result column="post_fee" jdbcType="DECIMAL" property="postFee" />
+    <result column="pay_money" jdbcType="DECIMAL" property="payMoney" />
+    <result column="total_money" jdbcType="DECIMAL" property="totalMoney" />
+    <result column="total_num" jdbcType="INTEGER" property="totalNum" />
+    <result column="skus" jdbcType="VARCHAR" property="skus" />
+    <result column="pay_channel" jdbcType="INTEGER" property="payChannel" />
+    <result column="countdown" jdbcType="INTEGER" property="countdown" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="address_id" jdbcType="BIGINT" property="addressId" />
+    <result column="pay_time" jdbcType="TIMESTAMP" property="payTime" />
+    <result column="post_time" jdbcType="TIMESTAMP" property="postTime" />
+    <result column="receive_time" jdbcType="TIMESTAMP" property="receiveTime" />
+    <result column="comment_time" jdbcType="TIMESTAMP" property="commentTime" />
+    <result column="cancel_time" jdbcType="TIMESTAMP" property="cancelTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <if test="true">
+      id, uuid, create_at, update_at, delete_at, pay_type, order_state, pay_latest_time,
+      post_fee, pay_money, total_money, total_num, skus, pay_channel, countdown, user_id,
+      address_id, pay_time, post_time, receive_time, comment_time, cancel_time
+    </if>
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from oms_order
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from oms_order
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.example.tryspringboot.model.entity.OmsOrder" useGeneratedKeys="true">
+    insert into oms_order (uuid, create_at, update_at, 
+      delete_at, pay_type, order_state, 
+      pay_latest_time, post_fee, pay_money, 
+      total_money, total_num, skus, 
+      pay_channel, countdown, user_id, 
+      address_id, pay_time, post_time, 
+      receive_time, comment_time, cancel_time
+      )
+    values (#{uuid,jdbcType=VARCHAR}, #{createAt,jdbcType=TIMESTAMP}, #{updateAt,jdbcType=TIMESTAMP}, 
+      #{deleteAt,jdbcType=TIMESTAMP}, #{payType,jdbcType=INTEGER}, #{orderState,jdbcType=INTEGER}, 
+      #{payLatestTime,jdbcType=TIMESTAMP}, #{postFee,jdbcType=DECIMAL}, #{payMoney,jdbcType=DECIMAL}, 
+      #{totalMoney,jdbcType=DECIMAL}, #{totalNum,jdbcType=INTEGER}, #{skus,jdbcType=VARCHAR}, 
+      #{payChannel,jdbcType=INTEGER}, #{countdown,jdbcType=INTEGER}, #{userId,jdbcType=BIGINT}, 
+      #{addressId,jdbcType=BIGINT}, #{payTime,jdbcType=TIMESTAMP}, #{postTime,jdbcType=TIMESTAMP}, 
+      #{receiveTime,jdbcType=TIMESTAMP}, #{commentTime,jdbcType=TIMESTAMP}, #{cancelTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.example.tryspringboot.model.entity.OmsOrder" useGeneratedKeys="true">
+    insert into oms_order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="uuid != null">
+        uuid,
+      </if>
+      <if test="createAt != null">
+        create_at,
+      </if>
+      <if test="updateAt != null">
+        update_at,
+      </if>
+      <if test="deleteAt != null">
+        delete_at,
+      </if>
+      <if test="payType != null">
+        pay_type,
+      </if>
+      <if test="orderState != null">
+        order_state,
+      </if>
+      <if test="payLatestTime != null">
+        pay_latest_time,
+      </if>
+      <if test="postFee != null">
+        post_fee,
+      </if>
+      <if test="payMoney != null">
+        pay_money,
+      </if>
+      <if test="totalMoney != null">
+        total_money,
+      </if>
+      <if test="totalNum != null">
+        total_num,
+      </if>
+      <if test="skus != null">
+        skus,
+      </if>
+      <if test="payChannel != null">
+        pay_channel,
+      </if>
+      <if test="countdown != null">
+        countdown,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="addressId != null">
+        address_id,
+      </if>
+      <if test="payTime != null">
+        pay_time,
+      </if>
+      <if test="postTime != null">
+        post_time,
+      </if>
+      <if test="receiveTime != null">
+        receive_time,
+      </if>
+      <if test="commentTime != null">
+        comment_time,
+      </if>
+      <if test="cancelTime != null">
+        cancel_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="uuid != null">
+        #{uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="createAt != null">
+        #{createAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateAt != null">
+        #{updateAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteAt != null">
+        #{deleteAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payType != null">
+        #{payType,jdbcType=INTEGER},
+      </if>
+      <if test="orderState != null">
+        #{orderState,jdbcType=INTEGER},
+      </if>
+      <if test="payLatestTime != null">
+        #{payLatestTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="postFee != null">
+        #{postFee,jdbcType=DECIMAL},
+      </if>
+      <if test="payMoney != null">
+        #{payMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="totalMoney != null">
+        #{totalMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="totalNum != null">
+        #{totalNum,jdbcType=INTEGER},
+      </if>
+      <if test="skus != null">
+        #{skus,jdbcType=VARCHAR},
+      </if>
+      <if test="payChannel != null">
+        #{payChannel,jdbcType=INTEGER},
+      </if>
+      <if test="countdown != null">
+        #{countdown,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="addressId != null">
+        #{addressId,jdbcType=BIGINT},
+      </if>
+      <if test="payTime != null">
+        #{payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="postTime != null">
+        #{postTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="receiveTime != null">
+        #{receiveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="commentTime != null">
+        #{commentTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cancelTime != null">
+        #{cancelTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.tryspringboot.model.entity.OmsOrder">
+    update oms_order
+    <set>
+      <if test="uuid != null">
+        uuid = #{uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="createAt != null">
+        create_at = #{createAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateAt != null">
+        update_at = #{updateAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteAt != null">
+        delete_at = #{deleteAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payType != null">
+        pay_type = #{payType,jdbcType=INTEGER},
+      </if>
+      <if test="orderState != null">
+        order_state = #{orderState,jdbcType=INTEGER},
+      </if>
+      <if test="payLatestTime != null">
+        pay_latest_time = #{payLatestTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="postFee != null">
+        post_fee = #{postFee,jdbcType=DECIMAL},
+      </if>
+      <if test="payMoney != null">
+        pay_money = #{payMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="totalMoney != null">
+        total_money = #{totalMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="totalNum != null">
+        total_num = #{totalNum,jdbcType=INTEGER},
+      </if>
+      <if test="skus != null">
+        skus = #{skus,jdbcType=VARCHAR},
+      </if>
+      <if test="payChannel != null">
+        pay_channel = #{payChannel,jdbcType=INTEGER},
+      </if>
+      <if test="countdown != null">
+        countdown = #{countdown,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="addressId != null">
+        address_id = #{addressId,jdbcType=BIGINT},
+      </if>
+      <if test="payTime != null">
+        pay_time = #{payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="postTime != null">
+        post_time = #{postTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="receiveTime != null">
+        receive_time = #{receiveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="commentTime != null">
+        comment_time = #{commentTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cancelTime != null">
+        cancel_time = #{cancelTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.tryspringboot.model.entity.OmsOrder">
+    update oms_order
+    set uuid = #{uuid,jdbcType=VARCHAR},
+      create_at = #{createAt,jdbcType=TIMESTAMP},
+      update_at = #{updateAt,jdbcType=TIMESTAMP},
+      delete_at = #{deleteAt,jdbcType=TIMESTAMP},
+      pay_type = #{payType,jdbcType=INTEGER},
+      order_state = #{orderState,jdbcType=INTEGER},
+      pay_latest_time = #{payLatestTime,jdbcType=TIMESTAMP},
+      post_fee = #{postFee,jdbcType=DECIMAL},
+      pay_money = #{payMoney,jdbcType=DECIMAL},
+      total_money = #{totalMoney,jdbcType=DECIMAL},
+      total_num = #{totalNum,jdbcType=INTEGER},
+      skus = #{skus,jdbcType=VARCHAR},
+      pay_channel = #{payChannel,jdbcType=INTEGER},
+      countdown = #{countdown,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=BIGINT},
+      address_id = #{addressId,jdbcType=BIGINT},
+      pay_time = #{payTime,jdbcType=TIMESTAMP},
+      post_time = #{postTime,jdbcType=TIMESTAMP},
+      receive_time = #{receiveTime,jdbcType=TIMESTAMP},
+      comment_time = #{commentTime,jdbcType=TIMESTAMP},
+      cancel_time = #{cancelTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
